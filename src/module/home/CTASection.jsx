@@ -10,7 +10,7 @@ function CTASection() {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Lets Use This Tool
+              Let's Use These Tools
             </h2>
             <p className="text-xl text-white/90 mb-8">
               Start with try the to-do list
