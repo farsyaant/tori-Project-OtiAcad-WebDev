@@ -34,12 +34,15 @@ export const tools = [
     {
       title: "Health Tracker",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.",
+        "Monitor and manage your daily health to maintain a healthier lifestyle.",
       icon: Heart,
       path: "/health-tracker",
       color: "text-error",
       bgColor: "bg-error/10",
-      available: false,
-      features: ["Cihuyy", "Cihuyy", "Cihuyy", "Cihuyy"],
+      available: true,
+      features: ["Track daily calories, sugar, and water intake", 
+        "Log various health conditions (e.g., mood, symptoms)",
+        "View comprehensive health history with filtering options", 
+        "Get a real-time summary of today's health metrics"],
     },
   ];
