@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from "react";
 import { useTodos } from "../../hooks/useTodos";
-
 import HeaderToDo from "./HeaderToDo";
 import AddTodo from "./AddToDo";
 import Stats from "./Stats";
@@ -17,10 +16,8 @@ const getStartOfDay = (date) => {
 
 function Todo() {
   const { todos, setTodos, addTodo, toggleTodo, deleteTodo, clearCompleted, editTodoText } = useTodos();
-
   const [newTodo, setNewTodo] = useState("");
   const [filter, setFilter] = useState("all");
-
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState("all");
   const [selectedPriorityFilter, setSelectedPriorityFilter] = useState("all");
   const [selectedDeadlineFilter, setSelectedDeadlineFilter] = useState("all"); 
