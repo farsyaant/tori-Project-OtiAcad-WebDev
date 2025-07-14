@@ -3,7 +3,6 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export function useTodos() {
-  // Logic ambil data dari localStorage
   const [todos, setTodos] = useState(() => {
     try {
       const savedTodos = localStorage.getItem("todos");
@@ -16,27 +15,38 @@ export function useTodos() {
     } catch (error) {
       console.error("Error parsing todos from localStorage:", error);
     }
+    return [];
   });
 
-  //   logic simpan data ke localstorage setiap kali todos mutasi
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  //   Mutation or Manipulation Todos
-  const addTodo = (text) => {
+  const addTodo = (text, deadline = null, priority = 'medium', category = 'personal') => {
+    console.log("useTodos: addTodo received:", { text, deadline, priority, category });
+
     if (text.trim()) {
       const todo = {
         id: uuidv4(),
         text: text.trim(),
         completed: false,
         createdAt: new Date(),
+        deadline: deadline,
+        priority: priority,
+        category: category,
       };
       setTodos([todo, ...todos]);
     }
   };
 
-  // filter yang dimana jika todo.id sama dengan id maka dihapus
+  const editTodoText = (id, newText) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, text: newText } : todo
+      )
+    );
+  };
+
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
@@ -45,7 +55,6 @@ export function useTodos() {
     setTodos(todos.filter((todo) => !todo.completed));
   };
 
-  // intinya cm ngubah completed aja
   const toggleTodo = (id) => {
     setTodos(
       todos.map((todo) =>
@@ -54,5 +63,5 @@ export function useTodos() {
     );
   };
 
-  return { todos, setTodos, addTodo, toggleTodo, deleteTodo, clearCompleted };
+  return { todos, setTodos, addTodo, toggleTodo, deleteTodo, clearCompleted, editTodoText };
 }
